@@ -47,7 +47,23 @@ These steps assume you have [Gatsby.js](https://www.gatsbyjs.org/) and [Node.js]
 
 The hook used to accomplish this animation is the `useChain` hook. This hook allows you to chain multiple different animations in a row.
 
-This demo
+This demo chains together a `useSpring` hook and a `useTransition` hook. In order for a chain to work, each animation must have a ref passed along to it to block it from starting on its own.
+
+If the hook `useRef` is unfamiliar to you, check out the [documentation](https://reactjs.org/docs/hooks-reference.html#useref) on React.js's site.
+
+A `useSpring` hook simply animates a value. The `useSpring` hook in this chain fires first and animates the container element to change color from pink to white and the size of the container element to go from 20% to 100%.
+
+_From the demo_
+```
+  const springRef = useRef()
+  const { size, opacity, ...rest } = useSpring({
+    ref: springRef,
+    config: config.stiff,
+    from: { size: '20%', background: 'hotpink' },
+    to: { size: open ? '100%' : '20%', background: open ? 'white' : 'hotpink' }
+  })
+```
+
 
 ## Resources / Contact Info
 
