@@ -61,7 +61,7 @@ const props = useSpring({opacity: 1, color: 'red'})
 
 If you `console.log(props)` you should see something like this:
 
-![Console.log](./console.png)
+![Console.log](./console.PNG)
 
 _From the demo_
 ```
