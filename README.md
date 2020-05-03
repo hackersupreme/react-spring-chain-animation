@@ -65,11 +65,24 @@ If you add `console.log(props)` to your code you should see something like this 
 
 ![Console.log](./console.PNG)
 
-The `useSpring` function returns an object where the keys are the names of the object key names, `opacity` and `color`.
+The `useSpring` function returns an object where the keys are the names of the object key names passed to it, `opacity` and `color`.
 
-The `useChain` demo is a bit more involved.
+The `useChain` demo is a bit more involved. If you don't recognize the variable declaration before `useSpring` it's a part of [ES6](https://www.sitepoint.com/es6-enhanced-object-literals/).
 
-_From the demo_
+This is some code from the link to help you understand.
+```
+// ES6 code
+const myObject = {
+  one:   'a',
+  two:   'b',
+  three: 'c'
+};
+
+const { one, two, three } = myObject;
+// one = 'a', two = 'b', three = 'c'
+```
+
+This is the code from the demo.
 ```
 const [open, set] = useState(false)
 
@@ -81,6 +94,7 @@ const { size, opacity, ...rest } = useSpring({
     to: { size: open ? '100%' : '20%', background: open ? 'white' : 'hotpink' }
   })
 ```
+
 
 
 
