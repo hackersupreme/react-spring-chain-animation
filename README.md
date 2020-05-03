@@ -53,6 +53,16 @@ If the hook `useRef` is unfamiliar to you, check out the [documentation](https:/
 
 A `useSpring` hook simply animates a value. The `useSpring` hook in this chain fires first and animates the container element to change color from pink to white and the size of the container element to go from 20% to 100%.
 
+This is one of the examples of how to use the `useSpring` hook from the official documentation on the `useSpring` hook.
+
+```
+const props = useSpring({opacity: 1, color: 'red'})
+```
+
+If you `console.log(props)` you should see something like this:
+
+
+
 _From the demo_
 ```
   const springRef = useRef()
