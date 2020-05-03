@@ -55,7 +55,7 @@ If the hook `useRef` is unfamiliar to you, check out the [documentation](https:/
 
 A `useSpring` hook simply animates a value. The `useSpring` hook in the demo's chain fires first and animates the container element to change color from pink to white and the size of the container element to go from 20% to 100%.
 
-This is one of the simplest examples of how to use the `useSpring` hook from the [official documentation](https://www.react-spring.io/docs/hooks/use-spring) on the `useSpring` hook.
+Before diving into the demo's use of `useSpring`, look at one of the simplest examples of how to use the `useSpring` hook from the [official documentation](https://www.react-spring.io/docs/hooks/use-spring). It'll help if you've never worked with this library before.
 
 ```
 const props = useSpring({opacity: 1, color: 'red'})
@@ -68,19 +68,6 @@ If you add `console.log(props)` to your code you should see something like this 
 The `useSpring` function returns an object where the keys are the names of the object key names passed to it, `opacity` and `color`.
 
 The `useChain` demo is a bit more involved. If you don't recognize the variable declaration before `useSpring` it's a part of [ES6](https://www.sitepoint.com/es6-enhanced-object-literals/).
-
-This is some code from the link to help you understand.
-```
-// ES6 code
-const myObject = {
-  one:   'a',
-  two:   'b',
-  three: 'c'
-};
-
-const { one, two, three } = myObject;
-// one = 'a', two = 'b', three = 'c'
-```
 
 This is the code from the demo.
 ```
@@ -95,6 +82,7 @@ const { size, opacity, ...rest } = useSpring({
   })
 ```
 
+Adding the following will show you what those are returning.
 
 
 
