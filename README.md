@@ -45,34 +45,43 @@ These steps assume you have [Gatsby.js](https://www.gatsbyjs.org/) and [Node.js]
 
 ## Code Sandbox Documentation
 
-The hook used to accomplish this animation is the `useChain` hook. This hook allows you to chain multiple different animations in a row.
+The hook used to accomplish this demo is the `useChain` hook. This hook allows you to chain multiple different animations in a row.
 
 This demo chains together a `useSpring` hook and a `useTransition` hook. In order for a chain to work, each animation must have a ref passed along to it to block it from starting on its own.
 
 If the hook `useRef` is unfamiliar to you, check out the [documentation](https://reactjs.org/docs/hooks-reference.html#useref) on React.js's site.
 
-A `useSpring` hook simply animates a value. The `useSpring` hook in this chain fires first and animates the container element to change color from pink to white and the size of the container element to go from 20% to 100%.
+**useSpring**
 
-This is one of the examples of how to use the `useSpring` hook from the official documentation on the `useSpring` hook.
+A `useSpring` hook simply animates a value. The `useSpring` hook in the demo's chain fires first and animates the container element to change color from pink to white and the size of the container element to go from 20% to 100%.
+
+This is one of the simplest examples of how to use the `useSpring` hook from the [official documentation](https://www.react-spring.io/docs/hooks/use-spring) on the `useSpring` hook.
 
 ```
 const props = useSpring({opacity: 1, color: 'red'})
 ```
 
-If you `console.log(props)` you should see something like this:
+If you add `console.log(props)` to your code you should see something like this in the console:
 
 ![Console.log](./console.PNG)
 
+The `useSpring` function returns an object where the keys are the names of the object key names, `opacity` and `color`.
+
+The `useChain` demo is a bit more involved.
+
 _From the demo_
 ```
-  const springRef = useRef()
-  const { size, opacity, ...rest } = useSpring({
+const [open, set] = useState(false)
+
+const springRef = useRef()
+const { size, opacity, ...rest } = useSpring({
     ref: springRef,
     config: config.stiff,
     from: { size: '20%', background: 'hotpink' },
     to: { size: open ? '100%' : '20%', background: open ? 'white' : 'hotpink' }
   })
 ```
+
 
 
 ## Resources / Contact Info
