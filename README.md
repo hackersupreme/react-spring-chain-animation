@@ -102,7 +102,7 @@ The hook requires three arguments: an array of items to apply the animations to,
 
 The animation specs cover the following:
 
-![useTransition](./usestransition.PNG)
+![useTransition](./usetransition.PNG)
 
 
 In the demo this hook animates the colorful boxes within the container to change size and change opacity.
