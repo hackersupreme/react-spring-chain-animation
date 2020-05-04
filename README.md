@@ -49,6 +49,7 @@ A `useSpring` hook simply animates a value. You can animate numbers, strings, an
 
 Before diving into the demo's use of `useSpring`, look at one of the simplest examples of how to use the `useSpring` hook from the [official documentation](https://www.react-spring.io/docs/hooks/use-spring). It'll help if you've never worked with this library before.
 
+_official docs_
 ```
 // This ...
 const props = useSpring({opacity: 1, color: 'red'})
@@ -64,7 +65,7 @@ The `useSpring` function returns an object where the keys are the names of the o
 
 The `useSpring` declaration in the `useChain` demo is a bit more involved than that example. If you don't recognize the variable declaration before `useSpring` since it differs from the code above it's a part of [ES6](https://www.sitepoint.com/es6-enhanced-object-literals/).
 
-This is the code from the demo.
+_index.js_
 ```
 const [open, set] = useState(false)
 
@@ -99,6 +100,10 @@ The `useTransition` hook animates properties when items are added or removed. Ba
 
 The hook requires three arguments: an array of items to apply the animations to, the keys to apply to those items, and the animation specs represented as an object.
 
+The animation specs cover the following:
+- the base values the elements start with
+- the 
+
 In the demo this hook animates the colorful boxes within the container to change size and change opacity.
 
 The array of items to apply the animations to is located in the `data.js` file. 
@@ -116,7 +121,9 @@ export default [
 ]
 ```
 
+The array that is exported from that file is imported into a variable named `data`. That's the first argument of the `useTransition` hook in the demo. 
 
+_index.js_
 ```
 const transRef = useRef()
 const transitions = useTransition(open ? data : [], item => item.name, {
@@ -128,6 +135,9 @@ const transitions = useTransition(open ? data : [], item => item.name, {
     leave: { opacity: 0, transform: 'scale(0)' }
   })
 ```
+
+The keys to apply to each element in the array is the name of each item since those are unique.
+
 
 
 ## Resources / Contact Info
