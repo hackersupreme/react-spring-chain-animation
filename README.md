@@ -39,7 +39,7 @@ These steps assume you have [Node.js](https://nodejs.org/en/) installed on your 
 
 The hook used to accomplish this demo is the `useChain` hook. This hook allows you to chain multiple different animations in a row.
 
-This demo chains together an animation from the `useSpring` hook and an animation form the `useTransition` hook. In order for a chain to work, each animation must have a ref passed along to it to block it from starting on its own.
+This demo chains together an animation from the `useSpring` hook and an animation from the `useTransition` hook. In order for a chain to work, each animation must have a ref passed along to it to block it from starting on its own.
 
 If the hook `useRef` is unfamiliar to you, check out the [documentation](https://reactjs.org/docs/hooks-reference.html#useref) on React.js's site. It's a core hook that's a part of React.js and not the React-Spring libary. 
 
@@ -60,9 +60,9 @@ If you add `console.log(props)` to your code you should see something like this 
 
 ![Console.log](./console.PNG)
 
-The `useSpring` function returns an object where the keys are the names of the object key names passed to it, `opacity` and `color`. If you pass that object to the `style` attribute in one of your component's elements it'll animate the opacity and color styles of that element.
+The `useSpring` function returns an object where the keys are the names of the object key names passed to it, `opacity` and `color`. If you pass the `props` object to the `style` attribute in one of your component's elements it'll animate the opacity and color styles of that element.
 
-The `useSpring` declaration in the `useChain` demo is a bit more involved. If you don't recognize the variable declaration before `useSpring` since it differs from the example above it's a part of [ES6](https://www.sitepoint.com/es6-enhanced-object-literals/).
+The `useSpring` declaration in the `useChain` demo is a bit more involved than that example. If you don't recognize the variable declaration before `useSpring` since it differs from the code above it's a part of [ES6](https://www.sitepoint.com/es6-enhanced-object-literals/).
 
 This is the code from the demo.
 ```
@@ -83,7 +83,11 @@ Adding the following will show you what those are returning.
 console.log(size, opacity, {...rest})
 ```
 
-This use of `useSpring` comes with a ref, a config object, an object representing the from styles, and an object representing the to styles. The config object `config` where `config.stiff` comes from is an object containing a bunch of presets. There's also `config.wobbly`, `config.gentle`, and [more](https://www.react-spring.io/docs/hooks/api). 
+This use of `useSpring` comes with a ref, a config object, an object representing the styles the element starts the animation at before mounting, and an object representing the styles the element ends at after mounting. 
+
+The `to` styles are conditional on the `open` variable set up using the `useState` hook. That variable is set to true when the component is open and false when it's closed. Since the component starts closed and the `open` variable is false, there is no mounting animation. The element's styles go from `{ size: 20%, background: 'hotpink' }` to `{ size: 20%, background: 'hotpink' }`. 
+
+The config object `config` where `config.stiff` comes from is an object containing a bunch of presets. There's also `config.wobbly`, `config.gentle`, and [more](https://www.react-spring.io/docs/hooks/api). If you delete it the core of the animation will still work, it'll just be less stiff!
 
 The other animation that is going to be chained with this `useSpring` animation is a transition animation that uses the hook `useTransition`.
 
@@ -93,7 +97,25 @@ The `useTransition` hook animates properties when items are added or removed. Ba
 
 [Here](https://www.react-spring.io/docs/hooks/use-transition) is the official documentation for the `useTransition` hook.
 
+The hook requires three arguments: an array of items to apply the animations to, the keys to apply to those items, and the animation specs represented as an object.
+
 In the demo this hook animates the colorful boxes within the container to change size and change opacity.
+
+The array of items to apply the animations to is located in the `data.js` file. 
+
+_data.js_
+```
+export default [
+  {
+    name: 'Rare Wind',
+    description: '#a8edea → #fed6e3',
+    css: 'linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)',
+    height: 200
+  },
+  ...
+]
+```
+
 
 ```
 const transRef = useRef()
