@@ -37,7 +37,7 @@ These steps assume you have [Node.js](https://nodejs.org/en/) installed on your 
 
 ## Documentation
 
-The hook used to accomplish this demo is the `useChain` hook. This hook allows you to chain multiple different animations in a row.
+React-Spring has a few different hooks that create different types of animations. The hook used to accomplish this demo is the `useChain` hook. This hook allows you to chain multiple different animations in a row.
 
 This demo chains together an animation from the `useSpring` hook and an animation from the `useTransition` hook. In order for a chain to work, each animation must have a ref passed along to it to block it from starting on its own.
 
@@ -96,7 +96,7 @@ The other animation that is going to be chained with this `useSpring` animation 
 
 **useTransition**
 
-The `useTransition` hook animates properties when items are added or removed. Basically mounting and unmounting animations.
+The `useTransition` hook animates properties when a group of items are added or removed. Basically mounting and unmounting animations.
 
 [Here](https://www.react-spring.io/docs/hooks/use-transition) is the official documentation for the `useTransition` hook.
 
@@ -107,7 +107,7 @@ The animation specs cover the following:
 ![useTransition](./usetransition.PNG)
 
 
-In the demo this hook animates the colorful boxes within the container to change size and change opacity when they mount and unmount. There is a delay between each individual item going through the animation which gives it a nice little flair.
+In the demo this hook animates the colorful boxes within the component's container to change size and change opacity when they mount and unmount. There is a delay between each individual item going through the animation which gives it a nice little flair.
 
 _index.js_
 ```
@@ -143,7 +143,14 @@ So now there are two animations to be chained together. The next section is how 
 
 **useChain**
 
-Now that there are two defined animations, they can be put together using `useChain`. 
+Now that there are two defined animations, they can be put together using `useChain`. Check out the [official documentation](https://www.react-spring.io/docs/hooks/use-chain) for some info.
+
+_official documentation
+```
+// The spring will start right away: 0.0 * 1000ms = 0ms
+// The transition will start after: 0.5 * 1000ms (the timeFrame default) = 500ms
+useChain([springRef, transitionRef], [0, 0.5] /*1000*/)
+```
 
 _index.js_
 ```
