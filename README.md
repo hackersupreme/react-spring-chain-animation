@@ -4,8 +4,7 @@ Contents
 - Overview
 - Live Site
 - Installation
-- Code Sandbox Documentation
-- Github Documentation
+- Documentation
 - Resources / Contact Info
 
 ## Overview
@@ -14,60 +13,56 @@ React-Spring is a spring based animation library. Since the animations are sprin
 
 An example of this is the UI component in [this](https://codesandbox.io/embed/2v716k56pr) demo code sandbox from the official documentation. It moves fluidly and is a good way to convey grid-like content.
 
-In this document I'll provide documentation for how that code sandbox demo works and provide an example of it I make on my own. I'll provide documentation for my creation as well. 
+In this document I'll provide documentation for how that code sandbox demo works. The React-Srping documentation is a little unfriendly to new web devs/hackers so I want to give a more in depth explanation of the code to help people out (read: myself).
 
-Note: the files in this github are from my example.
-
-[Here](https://www.react-spring.io/docs/hooks/use-chain) is the page of the official React-Spring docs where this demo is shown.
-
+[Here](https://www.react-spring.io/docs/hooks/use-chain) is the page in the official React-Spring docs where this demo is shown.
 
 The demo is a good UI component to know how to use. It provides white space emphasizing a title or call to action and smoothly transitions the user to some content related to that.
 
-I wanted to imagine what I could do with this component in the context of a blog. This is what I came up with.
-
-
-
-If you want to avoid clutter on your page but also want to include a grid of content like blog posts you can use this component to accomplish that.
+If you want to avoid clutter on your page but also want to include a grid of content like blog posts you can use this component to accomplish that in an efficient and stylish way.
 
 ## Live Site
 
-http://react-spring.hackersupreme.com/hooks/chain
+https://codesandbox.io/embed/2v716k56pr
 
 ## Installation
 
-These steps assume you have [Gatsby.js](https://www.gatsbyjs.org/) and [Node.js](https://nodejs.org/en/) installed on your computer.
+These steps assume you have [Node.js](https://nodejs.org/en/) installed on your computer.
 
 1. Create local directory for the project to live in
 2. Download the files into that directory
 3. Use a [cli](https://www.w3schools.com/whatis/whatis_cli.asp) and navigate into that directory
 4. Use `npm install` to download the necessary node modules
-5. Use `gatsby develop` to launch the server
+5. Use `npm start` to launch the server
 
-## Code Sandbox Documentation
+## Documentation
 
 The hook used to accomplish this demo is the `useChain` hook. This hook allows you to chain multiple different animations in a row.
 
-This demo chains together a `useSpring` hook and a `useTransition` hook. In order for a chain to work, each animation must have a ref passed along to it to block it from starting on its own.
+This demo chains together an animation from the `useSpring` hook and an animation form the `useTransition` hook. In order for a chain to work, each animation must have a ref passed along to it to block it from starting on its own.
 
-If the hook `useRef` is unfamiliar to you, check out the [documentation](https://reactjs.org/docs/hooks-reference.html#useref) on React.js's site.
+If the hook `useRef` is unfamiliar to you, check out the [documentation](https://reactjs.org/docs/hooks-reference.html#useref) on React.js's site. It's a core hook that's a part of React.js and not the React-Spring libary. 
 
 **useSpring**
 
-A `useSpring` hook simply animates a value. The `useSpring` hook in the demo's chain fires first and animates the container element to change color from pink to white and the size of the container element to go from 20% to 100%.
+A `useSpring` hook simply animates a value. You can animate numbers, strings, and more. The `useSpring` hook in the demo's chain fires first and animates the container element to change color from pink to white and the size of the container element to go from 20% to 100%.
 
 Before diving into the demo's use of `useSpring`, look at one of the simplest examples of how to use the `useSpring` hook from the [official documentation](https://www.react-spring.io/docs/hooks/use-spring). It'll help if you've never worked with this library before.
 
 ```
+// This ...
 const props = useSpring({opacity: 1, color: 'red'})
+// is a shortcut for this ...
+const props = useSpring({to: {opacity: 1, color: 'red'}})
 ```
 
 If you add `console.log(props)` to your code you should see something like this in the console:
 
 ![Console.log](./console.PNG)
 
-The `useSpring` function returns an object where the keys are the names of the object key names passed to it, `opacity` and `color`.
+The `useSpring` function returns an object where the keys are the names of the object key names passed to it, `opacity` and `color`. If you pass that object to the `style` attribute in one of your component's elements it'll animate the opacity and color styles of that element.
 
-The `useChain` demo is a bit more involved. If you don't recognize the variable declaration before `useSpring` it's a part of [ES6](https://www.sitepoint.com/es6-enhanced-object-literals/).
+The `useSpring` declaration in the `useChain` demo is a bit more involved. If you don't recognize the variable declaration before `useSpring` since it differs from the example above it's a part of [ES6](https://www.sitepoint.com/es6-enhanced-object-literals/).
 
 This is the code from the demo.
 ```
@@ -84,6 +79,33 @@ const { size, opacity, ...rest } = useSpring({
 
 Adding the following will show you what those are returning.
 
+```
+console.log(size, opacity, {...rest})
+```
+
+This use of `useSpring` comes with a ref, a config object, an object representing the from styles, and an object representing the to styles. The config object `config` where `config.stiff` comes from is an object containing a bunch of presets. There's also `config.wobbly`, `config.gentle`, and [more](https://www.react-spring.io/docs/hooks/api). 
+
+The other animation that is going to be chained with this `useSpring` animation is a transition animation that uses the hook `useTransition`.
+
+**useTransition**
+
+The `useTransition` hook animates properties when items are added or removed. Basically mounting and unmounting animations.
+
+[Here](https://www.react-spring.io/docs/hooks/use-transition) is the official documentation for the `useTransition` hook.
+
+In the demo this hook animates the colorful boxes within the container to change size and change opacity.
+
+```
+const transRef = useRef()
+const transitions = useTransition(open ? data : [], item => item.name, {
+    ref: transRef,
+    unique: true,
+    trail: 400 / data.length,
+    from: { opacity: 0, transform: 'scale(0)' },
+    enter: { opacity: 1, transform: 'scale(1)' },
+    leave: { opacity: 0, transform: 'scale(0)' }
+  })
+```
 
 
 ## Resources / Contact Info
