@@ -101,8 +101,9 @@ The `useTransition` hook animates properties when items are added or removed. Ba
 The hook requires three arguments: an array of items to apply the animations to, the keys to apply to those items, and the animation specs represented as an object.
 
 The animation specs cover the following:
-- the base values the elements start with
-- the 
+
+![useTransition](./usestransition.PNG)
+
 
 In the demo this hook animates the colorful boxes within the container to change size and change opacity.
 
