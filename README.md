@@ -121,6 +121,7 @@ const transitions = useTransition(open ? data : [], item => item.name, {
     leave: { opacity: 0, transform: 'scale(0)' }
   })
 ```
+To make sure the items in the array mount and unmount, the first array in the first argument of the hook is dependent on the `open` variable defined earlier. Try replacing `open ? data: []` with `data` to see how it affects the animation!
 
 The array of items to apply the animations to is located in the `data.js` file. The array that is exported from that file is imported into a variable named `data`.
 
@@ -145,12 +146,16 @@ So now there are two animations to be chained together. The next section is how 
 
 Now that there are two defined animations, they can be put together using `useChain`. Check out the [official documentation](https://www.react-spring.io/docs/hooks/use-chain) for some info.
 
-_official documentation
+The first argument the `useChain` hook recieves is an array of the refs that correspond to the animations defined earlier. The second array defines the timing of those animations.
+
+_official documentation_
 ```
 // The spring will start right away: 0.0 * 1000ms = 0ms
 // The transition will start after: 0.5 * 1000ms (the timeFrame default) = 500ms
 useChain([springRef, transitionRef], [0, 0.5] /*1000*/)
 ```
+
+The `useChain` hook in the demo is dependent on the `open` variable. If it's true, then the `useSpring` animation will start 100ms before the `useTransition` animation. If it's false, then the opposite will happen and the `useSpring` animation will start 600ms after the `useTransition` animation.
 
 _index.js_
 ```
@@ -158,7 +163,34 @@ _index.js_
  useChain(open ? [springRef, transRef] : [transRef, springRef], [0, open ? 0.1 : 0.6])
 ```
 
+**Putting it all together**
 
+Now that we've defined all the hooks to be used in the animation chain as well as the chain itself, we can turn to how the component renders these.
+
+_index.js_
+```
+  return (
+    <>
+      <Global />
+      <Container style={{ ...rest, width: size, height: size }} onClick={() => set(open => !open)}>
+        {transitions.map(({ item, key, props }) => (
+          <Item key={key} style={{ ...props, background: item.css }} />
+        ))}
+      </Container>
+    </>
+  )
+}
+```
+
+There are several components defined in the `styles.js` file, `Global`, `Container`, and `Item`. Those components use a library called [styled-components](https://styled-components.com/). 
+
+The `Global` component defines a container element that centers the `Container` component and makes the background of the page lightblue. 
+
+The `Container` component contains the colorful `Item` components and uses [CSS grid](https://www.w3schools.com/css/css_grid.asp) to lay them out in four columns. This is the component that will recieve the animation defined by the `useSpring` hook. The size object will be passed to the width & heigth styles. It also has the switch that sets the `open` variable to be true or false depending on its previous state.
+
+The `Item` is an element that fills the grid spaces defined by the `Container` component.
 
 ## Resources / Contact Info
+
+
 
