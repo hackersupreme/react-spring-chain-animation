@@ -105,24 +105,7 @@ The animation specs cover the following:
 ![useTransition](./usetransition.PNG)
 
 
-In the demo this hook animates the colorful boxes within the container to change size and change opacity.
-
-The array of items to apply the animations to is located in the `data.js` file. 
-
-_data.js_
-```
-export default [
-  {
-    name: 'Rare Wind',
-    description: '#a8edea → #fed6e3',
-    css: 'linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)',
-    height: 200
-  },
-  ...
-]
-```
-
-The array that is exported from that file is imported into a variable named `data`. That's the first argument of the `useTransition` hook in the demo. 
+In the demo this hook animates the colorful boxes within the container to change size and change opacity. There is a delay between each individual item going through the animation. 
 
 _index.js_
 ```
@@ -137,7 +120,30 @@ const transitions = useTransition(open ? data : [], item => item.name, {
   })
 ```
 
+The array of items to apply the animations to is located in the `data.js` file. The array that is exported from that file is imported into a variable named `data`.
+
+_data.js_
+```
+export default [
+  {
+    name: 'Rare Wind',
+    description: '#a8edea → #fed6e3',
+    css: 'linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)',
+    height: 200
+  },
+  ...
+]
+```
+
 The keys to apply to each element in the array is the name of each item since those are unique.
+
+So now there are two animations to be chained together. The next section is how the hook `useChain` accomplishes that.
+
+**useChain**
+
+
+
+
 
 
 
