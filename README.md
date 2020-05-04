@@ -13,7 +13,7 @@ React-Spring is a spring based animation library. Since the animations are sprin
 
 An example of this is the UI component in [this](https://codesandbox.io/embed/2v716k56pr) demo code sandbox from the official documentation. It moves fluidly and is a good way to convey grid-like content.
 
-In this document I'll provide documentation for how that code sandbox demo works. The React-Srping documentation is a little unfriendly to new web devs/hackers so I want to give a more in depth explanation of the code to help people out (read: myself).
+In this document I'll provide documentation for how that code sandbox demo works. The React-Spring documentation is a little unfriendly to new web devs/hackers so I want to give a more in depth explanation of the code to help people out (read: myself).
 
 [Here](https://www.react-spring.io/docs/hooks/use-chain) is the page in the official React-Spring docs where this demo is shown.
 
