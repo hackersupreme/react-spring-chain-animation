@@ -47,7 +47,7 @@ I'll first start by giving some info about the `useSpring` and `useTransition` h
 
 **useSpring**
 
-A `useSpring` hook simply animates a value. You can animate numbers, strings, and more. The `useSpring` hook in the demo's chain fires first and animates the container element to change color from pink to white and the size of the container element to go from 20% to 100%.
+A `useSpring` hook simply animates a value. You can animate numbers, strings, and more. The `useSpring` hook in the demo's chain fires first and animates the container element to change the color of the element from pink to white and the size of the container element to go from 20% to 100%.
 
 Before diving into the demo's use of `useSpring`, look at one of the simplest examples of how to use the `useSpring` hook from the [official documentation](https://www.react-spring.io/docs/hooks/use-spring). It'll help if you've never worked with this library before.
 
@@ -65,7 +65,7 @@ If you add `console.log(props)` to your code you should see something like this 
 
 The `useSpring` function returns an object where the keys are the names of the object key names passed to it, `opacity` and `color`. If you pass the `props` object to the `style` attribute in one of your component's elements it'll animate the opacity and color styles of that element.
 
-The `useSpring` declaration in the `useChain` demo is a bit more involved than that example. If you don't recognize the variable declaration before `useSpring` since it differs from the code above it's a part of [ES6](https://www.sitepoint.com/es6-enhanced-object-literals/).
+The `useSpring` declaration in the `useChain` demo is a bit more involved than the example above. If you don't recognize the variable declaration before `useSpring` since it differs from the code above it's a part of [ES6](https://www.sitepoint.com/es6-enhanced-object-literals/).
 
 _index.js_
 ```
