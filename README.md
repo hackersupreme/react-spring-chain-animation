@@ -43,6 +43,8 @@ This demo chains together an animation from the `useSpring` hook and an animatio
 
 If the hook `useRef` is unfamiliar to you, check out the [documentation](https://reactjs.org/docs/hooks-reference.html#useref) on React.js's site. It's a core hook that's a part of React.js and not the React-Spring libary. 
 
+I'll first start by giving some info about the `useSpring` and `useTransition` hook. Then I'll show you how the `useChain` hook pulls those together to create the component you see in the code sandbox.
+
 **useSpring**
 
 A `useSpring` hook simply animates a value. You can animate numbers, strings, and more. The `useSpring` hook in the demo's chain fires first and animates the container element to change color from pink to white and the size of the container element to go from 20% to 100%.
