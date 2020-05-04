@@ -192,5 +192,22 @@ The `Item` is an element that fills the grid spaces defined by the `Container` c
 
 ## Resources / Contact Info
 
+###### Email
 
+jeffgsch@gmail.com
+
+###### Website
+
+http://hackersupreme.com
+
+###### Resources
+
+- [React-Spring Documentation](https://www.react-spring.io/)
+- [React-Spring useChain Documentation](https://www.react-spring.io/docs/hooks/use-chain)
+- [React-Spring useSpring Documentation](https://www.react-spring.io/docs/hooks/use-spring)
+- [React-Spring useTransition Documentation](https://www.react-spring.io/docs/hooks/use-transition)
+- [React.js](https://reactjs.org/)
+- [Node.js](https://nodejs.org/)
+- [CSS Grid](https://www.w3schools.com/css/css_grid.asp)
+- [Style-Components](https://styled-components.com/)
 
