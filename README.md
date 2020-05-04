@@ -105,7 +105,7 @@ The animation specs cover the following:
 ![useTransition](./usetransition.PNG)
 
 
-In the demo this hook animates the colorful boxes within the container to change size and change opacity. There is a delay between each individual item going through the animation. 
+In the demo this hook animates the colorful boxes within the container to change size and change opacity when they mount and unmount. There is a delay between each individual item going through the animation which gives it a nice little flair.
 
 _index.js_
 ```
@@ -141,9 +141,13 @@ So now there are two animations to be chained together. The next section is how 
 
 **useChain**
 
+Now that there are two defined animations, they can be put together using `useChain`. 
 
-
-
+_index.js_
+```
+ // This will orchestrate the two animations above, comment the last arg and it creates a sequence
+ useChain(open ? [springRef, transRef] : [transRef, springRef], [0, open ? 0.1 : 0.6])
+```
 
 
 
