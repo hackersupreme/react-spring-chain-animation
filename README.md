@@ -22,7 +22,7 @@ If you want to avoid clutter on your page but also want to include a grid of con
 
 ## Live Site
 
-https://codesandbox.io/embed/2v716k56pr
+https://codesandbox.io/s/2v716k56pr?from-embed
 
 
 ## Documentation
